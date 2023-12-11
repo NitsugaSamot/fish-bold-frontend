@@ -1,9 +1,16 @@
 import Head from 'next/head';
+
 import Sidebar from './Sidebar';
 import { useRouter } from 'next/router';
 import PrivateRoute from './private-route/PrivateRoute'; // Importar el nuevo componente
 
-const Layout = ({ children }) => {
+import React, { ReactNode } from 'react';
+interface LayoutProps {
+  children: ReactNode;
+}
+
+
+const Layout: React.FC<LayoutProps>  = ({children}) => {
   const router = useRouter();
 
   return (

@@ -1,6 +1,10 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import useAuth from '@/hooks/useAuth';
+import React, { ReactNode } from 'react';
+interface LayoutProps {
+  children: ReactNode;
+}
 
 const PrivateRoute = ({ children }) => {
   const { auth, loading } = useAuth();
