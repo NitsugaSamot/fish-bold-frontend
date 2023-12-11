@@ -25,3 +25,42 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.logo{
+  width: 17rem;
+  margin: 0 auto;
+  border-radius: 50%;
+}
+
+.cards-product{
+    display: flex;
+    gap: 2rem;
+}
+
+.card-product{
+  padding: 2rem;
+  background-color: rgba(18, 18, 165, 0.516);
+  border-radius: 9%;
+}
+
+.card-product h3, 
+.card-product p{
+  background-color: rgba(18, 18, 165, 0.516); 
+  margin-bottom: 0.9rem;
+  padding: 0.8rem;
+  text-align: center;
+  color: rgba(196, 205, 227, 0.879);
+}
+
+.btn-buy{
+  background-color: green;
+  width: 100%;
+  color: antiquewhite;
+  padding: 0.5rem;
+  /* pointer-events: painted; */
+}
+
+.msg{
+  color: white;
+  margin: 0 auto;
+}

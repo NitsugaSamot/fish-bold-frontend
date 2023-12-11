@@ -3,4 +3,14 @@ const nextConfig = {
   reactStrictMode: true,
 }
 
-module.exports = nextConfig
+// next.config.js
+module.exports = {
+  nextConfig,
+  publicRuntimeConfig: {
+    // Aquí puedes agregar las variables de entorno que quieres acceder en el cliente
+    BACKEND_URL: process.env.BACKEND_URL,
+  },
+};
+
+
+// module.exports = nextConfig
