@@ -1,11 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import useAuth from '@/hooks/useAuth';
+// import useAuth from '@/hooks/useAuth';
+import useAuth, { AuthData } from '@/hooks/useAuth';
 
 const Sidebar = () => {
   const router = useRouter();
-  const { auth, closeSessionAuth } = useAuth();
+//   const { auth, closeSessionAuth } = useAuth();
+const { auth, closeSessionAuth } = useAuth() as AuthData; // Usa 'as AuthData' para indicar el tipo
 
   console.log(auth)
 
