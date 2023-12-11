@@ -27,7 +27,7 @@
   "include": [
     "**/*.ts",
     "**/*.tsx"
-, "pages/%5Btoken%5D.js"  ],
+, "pages/[token].js"  ],
   "exclude": [
     "node_modules"
   ]
