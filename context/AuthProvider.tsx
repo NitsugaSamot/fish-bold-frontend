@@ -1,130 +1,66 @@
-import React, { useState, useEffect, createContext } from "react";
+import { useState, useEffect, createContext } from "react";
 import { useRouter } from 'next/router';
 import axiosClient from "@/config/axiosClient";
 
-const AuthContext = createContext(undefined);
+const AuthContext = createContext()
 
 const AuthProvider = ({children}) => {
-  const [auth, setAuth] = useState({});
-  const [loading, setLoading] = useState(true);
-  const router = useRouter();
 
-  useEffect(() => {
-    const authenticateUser = async () => {
-      const token = localStorage.getItem('token');
-      if(!token) {
-        setLoading(false);
-        return;
-      }
+    const [auth, setAuth] = useState({})
+    const [loading, setLoading] = useState(true)
+    const router = useRouter();
 
-      const config = {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
+    useEffect(() => {
+        const authenticateUser = async () => {
+            const token = localStorage.getItem('token')
+            if(!token) {
+                setLoading(false)
+                return
+            }
+    
+            const config = {
+                headers : {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`
+                }
+            }
+            
+            try {
+                const {data} = await axiosClient('/auth/profile', config)
+                setAuth(data)
+                // navigate('/proyectos')
+                router.push('/')
+            } catch (error) {
+                setAuth({})
+            } finally{
+                 setLoading(false) 
+            }
+    
+            
         }
-      };
-      
-      try {
-        const {data} = await axiosClient('/auth/profile', config);
-        setAuth(data);
-        // navigate('/proyectos')
-        router.push('/');
-      } catch (error) {
-        setAuth({});
-      } finally {
-        setLoading(false);
-      }
-    };
-    authenticateUser();
-  }, []);
+        authenticateUser()
+    }, [])
 
-  const closeSessionAuth = () => {
-    localStorage.removeItem('token');
-    setAuth({});
-    console.log("User logged out");
-  };
+    const closeSessionAuth = () => {
+        localStorage.removeItem('token');
+        setAuth({})
+        console.log("User logged out");
+    }
 
   return (
     <AuthContext.Provider
-      value={{
-        auth,
-        setAuth, 
-        loading,
-        closeSessionAuth
-      }}
+            value={{
+                auth,
+                setAuth, 
+                loading,
+                closeSessionAuth
+            }}
     >
-      {children}
+        {children}
     </AuthContext.Provider>
-  );
-};
+  )
+}
 
-export { AuthProvider };
-export default AuthContext;
+export { AuthProvider }
 
-
-// import { useState, useEffect, createContext } from "react";
-// import { useRouter } from 'next/router';
-// import axiosClient from "@/config/axiosClient";
-
-// const AuthContext = createContext()
-
-// const AuthProvider = ({children}) => {
-
-//     const [auth, setAuth] = useState({})
-//     const [loading, setLoading] = useState(true)
-//     const router = useRouter();
-
-//     useEffect(() => {
-//         const authenticateUser = async () => {
-//             const token = localStorage.getItem('token')
-//             if(!token) {
-//                 setLoading(false)
-//                 return
-//             }
-    
-//             const config = {
-//                 headers : {
-//                     'Content-Type': 'application/json',
-//                     Authorization: `Bearer ${token}`
-//                 }
-//             }
-            
-//             try {
-//                 const {data} = await axiosClient('/auth/profile', config)
-//                 setAuth(data)
-//                 // navigate('/proyectos')
-//                 router.push('/')
-//             } catch (error) {
-//                 setAuth({})
-//             } finally{
-//                  setLoading(false) 
-//             }
-    
-            
-//         }
-//         authenticateUser()
-//     }, [])
-
-//     const closeSessionAuth = () => {
-//         localStorage.removeItem('token');
-//         setAuth({})
-//         console.log("User logged out");
-//     }
-
-//   return (
-//     <AuthContext.Provider
-//             value={{
-//                 auth,
-//                 setAuth, 
-//                 loading,
-//                 closeSessionAuth
-//             }}
-//     >
-//         {children}
-//     </AuthContext.Provider>
-//   )
-// }
-
-// export { AuthProvider }
-
-// export default AuthContext
+export default AuthContext
