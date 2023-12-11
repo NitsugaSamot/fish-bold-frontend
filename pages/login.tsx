@@ -60,15 +60,16 @@ const Login = () => {
           // setAlert({})
         }, 2000);
   
-      } catch (error) {
-
+      } catch (error: any) {
+        if (error.response && error.response.data && error.response.data.msg) {
           setUnsuccesfulyMsg(error.response.data.msg);
-
-          console.log(error)
-          
-          setTimeout(() => {
-              setUnsuccesfulyMsg(null)
-          }, 3000);
+      } else {
+          console.error(error);
+      }
+  
+      setTimeout(() => {
+          setUnsuccesfulyMsg(null);
+      }, 3000);
         
         }
     }
