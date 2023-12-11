@@ -13,7 +13,9 @@ const Login = () => {
   const [succesfullMsg, setSuccesfullMsg] = useState(null)
   const [unsuccesfulyMsg, setUnsuccesfulyMsg] = useState(null)
 
-  const {setAuth} = useAuth()
+  const { setAuth } = useAuth() || { setAuth: () => {} };
+
+  // const {setAuth} = useAuth()
   const router = useRouter()
 
   // Mutation para crear nuevos usuarios en apollo
