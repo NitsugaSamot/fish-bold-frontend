@@ -10,7 +10,9 @@ import axiosClient from '@/config/axiosClient'
 
 const Login = () => {
 
-  const [succesfullMsg, setSuccesfullMsg] = useState(null)
+  const [succesfullMsg, setSuccesfullMsg] = useState<string | null>(null);
+
+  // const [succesfullMsg, setSuccesfullMsg] = useState(null)
   const [unsuccesfulyMsg, setUnsuccesfulyMsg] = useState(null)
 
   const { setAuth } = useAuth() || { setAuth: () => {} };
