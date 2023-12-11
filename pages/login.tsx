@@ -48,7 +48,7 @@ const Login = () => {
         // setAuth(data)
         // navigate('/')
         // navigate('/logged_in')
-        setSuccesfullMsg('Autenticando')
+        setSuccesfullMsg('Autenticando' as string | null);
 
 
         
