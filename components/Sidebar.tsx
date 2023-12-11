@@ -9,7 +9,11 @@ const Sidebar = () => {
 
 const authContext = useAuth();
   
-const { auth, closeSessionAuth } = authContext ? (authContext as AuthData) : { auth: null, closeSessionAuth: () => {}, loading: false };
+const { auth, closeSessionAuth, loading } = authContext
+  ? (authContext as AuthData)
+  : { auth: null, closeSessionAuth: () => {}, loading: false };
+
+// const { auth, closeSessionAuth } = authContext ? (authContext as AuthData) : { auth: null, closeSessionAuth: () => {}, loading: false };
 
 
   console.log(auth);
