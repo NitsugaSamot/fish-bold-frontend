@@ -2,7 +2,9 @@ import { useState, useEffect, createContext } from "react";
 import { useRouter } from 'next/router';
 import axiosClient from "@/config/axiosClient";
 
-const AuthContext = createContext()
+// const AuthContext = createContext()
+
+const AuthContext = createContext(null);
 
 const AuthProvider = ({children}) => {
 
