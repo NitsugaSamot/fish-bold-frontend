@@ -5,11 +5,11 @@ import { HashRouter } from 'react-router-dom'
 
 export default function App({ Component, pageProps }: AppProps) {
   return(
-    <HashRouter>
+    // <HashRouter>
       <AuthProvider>
           <Component {...pageProps} />
       </AuthProvider>
-    </HashRouter>
+    // </HashRouter>
 
   ) 
 }
