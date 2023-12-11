@@ -11,6 +11,7 @@ export interface AuthData {
       _id: string; // Ajusta según la estructura real de tu objeto auth
       // Otros campos según la estructura de tu objeto auth
     };
+    loading: boolean;
     closeSessionAuth: () => void;
     // Otros campos según la estructura de tu objeto auth
   }
