@@ -8,22 +8,50 @@ interface PrivateRouteProps {
 
 const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
   const authContext = useAuth();
-  const { auth = null, loading, closeSessionAuth } = authContext ?? { auth: null, loading: false, closeSessionAuth: () => {} } as AuthData;
+  const { auth, loading, closeSessionAuth } = authContext ?? { auth: null, loading: false, closeSessionAuth: () => {} };
 
   const router = useRouter();
 
   useEffect(() => {
-    if (!auth?._id) {
-      // Usuario no autenticado, redirigir a la página principal
+    if (!auth || !auth._id) {
+      // Usuario no autenticado o auth es nulo, redirigir a la página principal
       router.push('/');
     }
   }, [auth, loading, router]);
 
   // Renderizar children solo si el usuario está autenticado
-  return auth?._id ? <>{children}</> : null;
+  return auth && auth._id ? <>{children}</> : null;
 };
 
 export default PrivateRoute;
+
+
+// import React, { ReactNode, useEffect } from 'react';
+// import { useRouter } from 'next/router';
+// import useAuth, { AuthData } from '@/hooks/useAuth';
+
+// interface PrivateRouteProps {
+//   children: ReactNode;
+// }
+
+// const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
+//   const authContext = useAuth();
+//   const { auth = null, loading, closeSessionAuth } = authContext ?? { auth: null, loading: false, closeSessionAuth: () => {} } as AuthData;
+
+//   const router = useRouter();
+
+//   useEffect(() => {
+//     if (!auth?._id) {
+//       // Usuario no autenticado, redirigir a la página principal
+//       router.push('/');
+//     }
+//   }, [auth, loading, router]);
+
+//   // Renderizar children solo si el usuario está autenticado
+//   return auth?._id ? <>{children}</> : null;
+// };
+
+// export default PrivateRoute;
 
 
 // import React, { ReactNode, useEffect } from 'react';
