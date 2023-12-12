@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import useAuth, { AuthData } from '@/hooks/useAuth';
+import useAuth from '@/hooks/useAuth';
 
 interface PrivateRouteProps {
   children: ReactNode;
@@ -13,7 +13,7 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (!auth || !('_id' in auth)) {
+    if (!auth) {
       // Usuario no autenticado o auth no tiene la propiedad _id, redirigir a la página principal
       router.push('/');
     }

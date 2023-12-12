@@ -9,8 +9,8 @@ interface LayoutProps {
   children: ReactNode;
 }
 
-
 const Layout: React.FC<LayoutProps>  = ({children}) => {
+  
   const router = useRouter();
 
   return (

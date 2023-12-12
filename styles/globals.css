@@ -52,7 +52,7 @@ body {
   color: rgba(196, 205, 227, 0.879);
 }
 
-.btn-buy{
+.add-cart{
   background-color: green;
   width: 100%;
   color: antiquewhite;
@@ -60,7 +60,54 @@ body {
   /* pointer-events: painted; */
 }
 
+.btn-buy{
+    background-color: green;
+    width: 80%;
+    color: antiquewhite;
+    padding: 0.5rem;
+    margin-top: 1rem;
+}
+
 .msg{
   color: white;
   margin: 0 auto;
+}
+
+.btn-opp{
+  background-color: rgba(2, 53, 123, 0.598);
+  width: 3rem;
+  padding: 1rem;
+  border-radius: 50%;
+  color: rgb(81, 137, 137);
+}
+
+.cart-summary{
+  background-color: rgb(25, 75, 167);
+  padding: 2rem;
+  text-align: center;
+  gap: 2rem;
+  margin-top: 1.5rem;
+  color: rgb(126, 147, 165);
+  width: 75%;
+}
+
+.div-total{
+  background-color: rgb(12, 55, 210);
+  padding: 0.5rem;
+  margin-top: 1rem;
+  width: 50%;
+
+}
+
+.cart-products{
+  margin-top: 1rem;
+}
+
+.products{
+  display: flex;
+  gap: 2rem;
+}
+
+.products p{
+  margin-top: 1.4rem;
 }

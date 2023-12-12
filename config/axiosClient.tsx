@@ -1,6 +1,3 @@
-// axiosClient.js
-// import axios from "axios";
-// import getConfig from "next/config";
 import axios from "axios";
 import getConfig from "next/config";
 
@@ -13,11 +10,5 @@ const axiosClient = axios.create({
 export default axiosClient;
 
 
-// import axios from "axios";
 
-// const axiosClient = axios.create({
-//     baseURL: `${import.meta.env.BACKEND_URL}`,
-//   });
-  
-//   export default axiosClient;
   

@@ -38,7 +38,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             try {
                 const { data } = await axiosClient('/auth/profile', config);
                 setAuth(data);
-                router.push('/');
+                router.push('/orders');
             } catch (error) {
                 setAuth({});
             } finally {

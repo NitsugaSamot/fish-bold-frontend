@@ -83,7 +83,7 @@ const Login = () => {
     )
   }
 
-  const showUnsuccessfulyMessage = () => {
+const showUnsuccessfulyMessage = () => {
     return(
       <div className='bg-red-700 color-white py-2 px-3 w-full my-3 max-w-sm text-center mx-auto'>
           <p>{unsuccesfulyMsg}</p>

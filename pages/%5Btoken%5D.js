@@ -18,13 +18,14 @@ const Token = () => {
         const url = `/auth/verify-account/${token}`;
         await axiosClient(url);
 
+        console.log(token)
         setVerificationStatus('success');
-
         router.push('/login')
         
       } catch (error) {
         console.error('Error al verificar cuenta:', error);
         setVerificationStatus('error');
+        console.log(error)
       }
     };
 
@@ -49,8 +50,6 @@ const Token = () => {
   return (
     <div className="bg-blue-800 min-h-screen flex flex-col justify-center ">
       <p className='msg color-white'>{getMessage()}</p>
-
-
     </div>
   );
 };
