@@ -77,9 +77,7 @@ const Products: React.FC = () => {
                 }
 
                 console.log('Product added to cart:', product);
-              }}
-              className='add-cart'
-            >
+              }} className='add-cart'>
               Añadir
             </button>
           </div>

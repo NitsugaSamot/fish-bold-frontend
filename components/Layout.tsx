@@ -37,7 +37,9 @@ const Layout: React.FC<LayoutProps>  = ({children}) => {
 
             <main className="sm:w-2/3 xl:w-4/5 sm:min-h-screen p-5">
               {/* Utilizar PrivateRoute alrededor de las secciones protegidas */}
-              <PrivateRoute>{children}</PrivateRoute>
+              <PrivateRoute>
+                  {children}
+              </PrivateRoute>
             </main>
           </div>
         </div>

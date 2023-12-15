@@ -14,64 +14,125 @@ interface AuthContextValue {
 }
 
 const AuthContext = createContext<AuthContextValue | null>(null);
+// AuthProvider.tsx
+
+// ... (importaciones y definiciones de interfaces)
 
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-    const [auth, setAuth] = useState({});
-    const [loading, setLoading] = useState(true);
-    const router = useRouter();
+  const [auth, setAuth] = useState({});
+  const [loading, setLoading] = useState(true);
+  const router = useRouter();  // Usa useRouter de next/router
 
-    useEffect(() => {
-        const authenticateUser = async () => {
-            const token = localStorage.getItem('token');
-            if (!token) {
-                setLoading(false);
-                return;
-            }
+  useEffect(() => {
+    const authenticateUser = async () => {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        setLoading(false);
+        return;
+      }
 
-            const config = {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`
-                }
-            };
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      };
 
-            try {
-                const { data } = await axiosClient('/auth/profile', config);
-                setAuth(data);
-                router.push('/orders');
-            } catch (error) {
-                setAuth({});
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        authenticateUser();
-    }, []);
-
-    const closeSessionAuth = () => {
-        localStorage.removeItem('token');
+      try {
+        const { data } = await axiosClient('/auth/profile', config);
+        setAuth(data);
+      } catch (error) {
         setAuth({});
-        console.log("User logged out");
+      } finally {
+        setLoading(false);
+      }
     };
 
-    return (
-        <AuthContext.Provider
-            value={{
-                auth,
-                setAuth,
-                loading,
-                closeSessionAuth
-            }}
-        >
-            {children}
-        </AuthContext.Provider>
-    );
+    authenticateUser();
+  }, []);
+
+  const closeSessionAuth = () => {
+    localStorage.removeItem('token');
+    setAuth({});
+    router.push('/');  // Redirige a la página de inicio después de cerrar sesión
+  };
+
+  return (
+    <AuthContext.Provider
+      value={{
+        auth,
+        setAuth,
+        loading,
+        closeSessionAuth
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 export { AuthProvider };
-
 export default AuthContext;
+
+// const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
+//     const [auth, setAuth] = useState({});
+//     const [loading, setLoading] = useState(true);
+//     const router = useRouter();
+
+
+
+//     useEffect(() => {
+//         const authenticateUser = async () => {
+//             const token = localStorage.getItem('token');
+//             if (!token) {
+//                 setLoading(false);
+//                 return;
+//             }
+
+//             const config = {
+//                 headers: {
+//                     'Content-Type': 'application/json',
+//                     Authorization: `Bearer ${token}`
+//                 }
+//             };
+
+//             try {
+//                 const { data } = await axiosClient('/auth/profile', config);
+//                 setAuth(data);
+//                 router.push('/orders');
+//             } catch (error) {
+//                 setAuth({});
+//             } finally {
+//                 setLoading(false);
+//             }
+//         };
+
+//         authenticateUser();
+//     }, []);
+
+//     const closeSessionAuth = () => {
+//         localStorage.removeItem('token');
+//         setAuth({});
+//         console.log("User logged out");
+//     };
+
+//     return (
+//         <AuthContext.Provider
+//             value={{
+//                 auth,
+//                 setAuth,
+//                 loading,
+//                 closeSessionAuth
+//             }}
+//         >
+//             {children}
+//         </AuthContext.Provider>
+//     );
+// };
+
+// export { AuthProvider };
+
+// export default AuthContext;
 
 
 // import { useState, useEffect, createContext, ReactNode } from "react";
